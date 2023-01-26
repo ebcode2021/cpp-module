@@ -1,7 +1,7 @@
 //class Name : 대문자 + 카멜케이스
 //내부 변수들은 : 소문자 + 카멜케이스
 
-// toupper example (C++)
+
 #include <iostream>       // std::cout
 #include <string>         // std::string
 
@@ -24,5 +24,5 @@ int	main (int argc, char *argv[])
 		megaphone(++argv);
 	else
 		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
-  return 0;
+	return 0;
 }
