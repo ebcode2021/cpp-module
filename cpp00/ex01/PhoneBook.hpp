@@ -10,12 +10,10 @@ class PhoneBook
 		Contact	contact[8];
 
 	public : 
-		// constructor && destructor
-		// PhoneBook();
-		// ~PhoneBook();
 		// member function
 		void		add(int idx);
 		void		search();
+		void		searchInformation();
 
 };
 

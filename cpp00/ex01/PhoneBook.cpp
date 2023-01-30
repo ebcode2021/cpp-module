@@ -6,7 +6,7 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 14:17:43 by eunson            #+#    #+#             */
-/*   Updated: 2023/01/26 19:41:17 by eunson           ###   ########.fr       */
+/*   Updated: 2023/01/27 17:56:38 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,10 @@
 #include <string>
 
 #include "PhoneBook.hpp"
-#include "Contact.hpp"
+//#include "utils.cpp"
 
+void	deadSignalCheck(void);
 #define WIDTH 10;
-
-// PhoneBook::PhoneBook()
-// {
-// 	std::cout << "PhoneBook Constructor called" << std::endl;
-// }
-
-// PhoneBook::~PhoneBook()
-// {
-// 	std::cout << "PhoneBook Destructor called" << std::endl;
-// }
 
 void	PhoneBook::add(int idx)
 {
@@ -49,8 +40,29 @@ void	printHeader(void)
 	}
 }
 
+void	PhoneBook::searchInformation(void)
+{
+	int			idx;
+	std::string input;
+
+	std::cout << "Please enter the index of the contact you want to see : ";
+	std::getline(std::cin, input);
+	idx = std::atoi(input.c_str());
+	if (idx >= 1 && idx <= 8)
+		this->contact[idx - 1].showDetail();
+}
+
 void	PhoneBook::search(void)
 {
 	printHeader();
-	contact->show(contact);
+	for (int i = 0; i < 8; i++)
+	{
+		std::cout.width(10);
+		std::cout << i + 1;
+		std::cout << "|";
+		this->contact[i].show();
+		std::cout << std::endl;
+	}
+	deadSignalCheck();
+	searchInformation();
 }

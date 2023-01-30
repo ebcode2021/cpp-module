@@ -6,7 +6,7 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 14:17:54 by eunson            #+#    #+#             */
-/*   Updated: 2023/01/26 19:41:41 by eunson           ###   ########.fr       */
+/*   Updated: 2023/01/27 17:31:01 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ class Contact
 	public :
 		// Contact();
 		// ~Contact();
-		void	add(void);
-		void	show(Contact *con);
+		void	add();
+		void	show();
+		void	showDetail();
+		
 };
 
 #endif

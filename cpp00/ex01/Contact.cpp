@@ -6,88 +6,97 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 14:23:16 by eunson            #+#    #+#             */
-/*   Updated: 2023/01/26 20:08:59 by eunson           ###   ########.fr       */
+/*   Updated: 2023/01/27 17:58:40 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 
-// Contact::Contact()
-// {
-// 	std::cout << "Contact Constructor called" << std::endl;
-// }
+void	deadSignalCheck(void);
 
-// Contact::~Contact()
-// {
-// 	std::cout << "Contact Destructor called" << std::endl;
-// }
-
-void	assertDarkestSecret(std::string &str)
+int	assertDarkestSecret(std::string &str)
 {
 	if (str.compare("I'm not a Robot"))
 	{
-		std::cout << "땡!" << std::endl;
-		exit(1);
+		std::cout << "You are a Robot" << std::endl;
+		return (0);
 	}
+	return (1);
 }
 
-void	assertPhoneNumber(std::string& str)
+int	assertPhoneNumber(std::string& str)
 {
+	if (str.length() == 0)
+	{
+		std::cout << "phoneNumber is essential information" << std::endl;
+		return (0);
+	}
 	for (int i = 0; i < str.length(); i++)
 	{
 		if (isdigit(str[i]) == 0)
 		{
 			std::cout << "only use number!" << std::endl;
-			exit(1);
+			return (0);
 		}
 	}
+	return (1);
 }
 
 void	Contact::add(void)
 {
-	std::cout << "What's your firsName? : ";
-	std::getline(std::cin, firstName);
-	std::cout << "What's your lastName? : ";
-	std::getline(std::cin, lastName);
-	std::cout << "What's your nickName? : ";
-	std::getline(std::cin, nickName);
-	std::cout << "What's your phoneNumber? (only use number ex) 01012345678) : ";
-	std::getline(std::cin, phoneNumber);
-	assertPhoneNumber(phoneNumber);
-	std::cout << "Type the sentence on the right [I'm not a Robot] : ";
-	std::getline(std::cin, darkestSecret);
-	assertDarkestSecret(darkestSecret);
+	std::cout << "firstName? : ";
+	std::getline(std::cin, this->firstName);
+	deadSignalCheck();
+	std::cout << "lastName? : ";
+	std::getline(std::cin, this->lastName);
+	deadSignalCheck();
+	std::cout << "nickName? : ";
+	std::getline(std::cin, this->nickName);
+	deadSignalCheck();
+	while (1)
+	{
+		std::cout << "phoneNumber?(only use number) : ";
+		std::getline(std::cin, this->phoneNumber);
+		if (assertPhoneNumber(this->phoneNumber))
+			break;
+		deadSignalCheck();
+	}
+	while (1)
+	{
+		std::cout << "Enter the sentence on the right [I'm not a Robot] : ";
+		std::getline(std::cin, this->darkestSecret);
+		if (assertDarkestSecret(this->darkestSecret))
+			break;
+		deadSignalCheck();
+	}
 }
 
-void	Contact::show(Contact *con)
+void	Contact::show()
 {
-	int i = 0;
+	std::string	output[3] = {firstName, lastName, nickName};
 
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < 3; i++)
 	{
-		std::string first = con[i].firstName;
-		std::string second = con[i].lastName;
-		std::string third = con[i].nickName;
-		std::string	output[3] = {first, second, third};
-
 		std::cout.width(10);
-		std::cout << i + 1;
-		std::cout << "|";
-		
-		for (int j = 0; j < 3; j++)
+		if (output[i].length() > 10)
 		{
-			std::cout.width(10);
-			if (output[j].length() > 10)
-			{
-				output[j] = output[j].replace(9, 10, ".");
-				std::cout << output[j].substr(0, 10);
-			}
-			else
-				std::cout << output[j];
-			if (j < 2)
-				std::cout << "|";
+			output[i] = output[i].replace(9, 10, ".");
+			std::cout << output[i].substr(0, 10);
 		}
-	
-		std::cout << std::endl;
+		else
+			std::cout << output[i];
+		if (i < 2)
+			std::cout << "|";
 	}
+}
+
+void	Contact::showDetail()
+{
+	std::cout << "********* This is Information *********" << std::endl;
+	std::cout << this->firstName << std::endl;
+	std::cout << this->lastName << std::endl;
+	std::cout << this->nickName << std::endl;
+	std::cout << this->phoneNumber << std::endl;
+	std::cout << this->darkestSecret << std::endl;
+	std::cout << "***************************************" << std::endl; 
 }
