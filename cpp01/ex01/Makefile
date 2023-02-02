@@ -6,8 +6,10 @@ CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
 
-SRCS = test.cpp			\
-	   Account.cpp		
+SRCS = main.cpp			\
+	   Zombie.cpp		\
+	   zombieHorde.cpp
+
 OBJS = $(SRCS:.cpp=.o)
 
 # COMMAND
