@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   HumanA.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/02 19:58:41 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/02 21:33:56 by eunson           ###   ########.fr       */
+/*   Created: 2023/02/02 21:13:24 by eunson            #+#    #+#             */
+/*   Updated: 2023/02/02 22:23:06 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "HumanA.hpp"
 
-Zombie::Zombie(void){
-	this->_name = "eunson";
-}
+HumanA::HumanA(std::string name, Weapon &weapon) :  _weapon(weapon), _name(name) {}
 
-Zombie::Zombie(std::string name)
+HumanA::~HumanA(){}
+
+void HumanA::attack(void)
 {
-	this->_name = name;
-}
-
-Zombie::~Zombie(void)
-{
-	std::cout << "이젠 죽어요 " << this->_name << std::endl;
-}
-
-void Zombie::announce(void)
-{
-	std::cout << this->_name << ":  BraiiiiiiinnnzzzZ..." << std::endl;
-}
-
-void	Zombie::setName(std::string name)
-{
-	this->_name = name;
+	std::cout << this->_name << " attacks with their "
+				<< this->_weapon.getType() << std::endl;
 }

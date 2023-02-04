@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   Weapon.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/02 19:58:41 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/02 21:33:56 by eunson           ###   ########.fr       */
+/*   Created: 2023/02/02 21:12:05 by eunson            #+#    #+#             */
+/*   Updated: 2023/02/03 09:50:14 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#ifndef WEAPON_HPP
+# define WEAPON_HPP
 
-Zombie::Zombie(void){
-	this->_name = "eunson";
-}
+# include <iostream>
 
-Zombie::Zombie(std::string name)
+class Weapon
 {
-	this->_name = name;
-}
+	private :
+		std::string _type;
 
-Zombie::~Zombie(void)
-{
-	std::cout << "이젠 죽어요 " << this->_name << std::endl;
-}
+	public :
+		Weapon();
+		Weapon(std::string type);
+		Weapon(const Weapon&);
+		Weapon &operator=(const Weapon&);
+		~Weapon();
+		std::string& getType(void);
+		void setType(std::string type);
+};
 
-void Zombie::announce(void)
-{
-	std::cout << this->_name << ":  BraiiiiiiinnnzzzZ..." << std::endl;
-}
-
-void	Zombie::setName(std::string name)
-{
-	this->_name = name;
-}
+#endif

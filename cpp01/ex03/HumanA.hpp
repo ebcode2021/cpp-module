@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   HumanA.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/02 19:58:41 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/02 21:33:56 by eunson           ###   ########.fr       */
+/*   Created: 2023/02/02 21:12:58 by eunson            #+#    #+#             */
+/*   Updated: 2023/02/02 22:03:41 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#ifndef HUMANA_HPP
+# define HUMANA_HPP
 
-Zombie::Zombie(void){
-	this->_name = "eunson";
-}
+#include "Weapon.hpp"
 
-Zombie::Zombie(std::string name)
+class HumanA
 {
-	this->_name = name;
-}
+	private :
+		Weapon &_weapon;
+		std::string _name;
 
-Zombie::~Zombie(void)
-{
-	std::cout << "이젠 죽어요 " << this->_name << std::endl;
-}
+	public :
+		HumanA(std::string name, Weapon &weapon);
+		~HumanA();
+		void	attack();
+};
 
-void Zombie::announce(void)
-{
-	std::cout << this->_name << ":  BraiiiiiiinnnzzzZ..." << std::endl;
-}
-
-void	Zombie::setName(std::string name)
-{
-	this->_name = name;
-}
+#endif
