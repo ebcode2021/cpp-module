@@ -3,28 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   Join.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunbison <eunbison@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 22:10:14 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/04 22:37:12 by eunbison         ###   ########.fr       */
+/*   Updated: 2023/02/05 19:21:29 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Join.hpp"
 
-void	Join::replace(std::ifstream &infile, std::ofstream &outfile, std::string to_find, std::string replace)
+void	Join::replace(std::string file_name, std::string to_find, std::string replace)
 {
-	std::string oneLine;
+	int			idx;
+	std::ifstream	infile;
+	std::ofstream	outfile;
+	std::string 	pre_oneLine;
+	std::string 	oneLine;
 
+	if (to_find.length() == 0 || replace.length() == 0)
+		exit(1);
+	infile.open(file_name);
+	if (infile.fail())
+	{
+		std::cerr << "ya" << std::endl;
+		exit(1);
+	}
+	outfile.open(file_name + ".replace");
 	while (std::getline(infile, oneLine))
 	{
+		pre_oneLine = "";
 		while (1)
 		{
-			int	idx = oneLine.find(to_find);
+			idx = oneLine.find(to_find);
 			if (idx == -1)
-				break ;
-			oneLine = oneLine.substr(0, idx) + replace + oneLine.substr(idx + replace.length(), oneLine.length());
+				break ; 
+			pre_oneLine += oneLine.substr(0, idx) + replace;
+			oneLine =  oneLine.substr(idx + replace.length(), oneLine.length());
+			std::cout << oneLine << std::endl;
 		}
-		outfile << oneLine << std::endl;
+		outfile << pre_oneLine + oneLine << std::endl;
 	}
+	infile.close();
+	outfile.close();
 }

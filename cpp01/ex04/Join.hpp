@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Join.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eunbison <eunbison@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 22:07:30 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/04 22:17:41 by eunbison         ###   ########.fr       */
+/*   Updated: 2023/02/05 19:06:14 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 class Join
 {
 	public :
-		static void replace(std::ifstream &in, std::ofstream &out, std::string to_find, std::string replace);
+		static void replace(std::string file_name, std::string to_find, std::string replace);
 };
 
 #endif
