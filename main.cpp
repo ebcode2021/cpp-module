@@ -31,3 +31,17 @@ int main()
 	str[0] = 'f';
 	std::cout << test1.str << "\n" << test2.str << "\n" << test3.str << std::endl;
 }
+
+int main()
+// {
+// 	Fixed b(a); //복사생성(주소값)
+// 	const Fixed a(b);
+
+	// a = b;
+	// b->dkfjkl = "asdlfkjkldf";
+	// Fixed c;
+	// c = Fixed(b); // 할당대입.
+	// b = a; // 할당대입
+	int a = 5;
+	a = 6;
+}
