@@ -1,9 +1,5 @@
-//class Name : 대문자 + 카멜케이스
-//내부 변수들은 : 소문자 + 카멜케이스
-
-
-#include <iostream>       // std::cout
-#include <string>         // std::string
+#include <iostream>
+#include <string>
 
 void	megaphone(char *argv[])
 {

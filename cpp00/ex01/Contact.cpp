@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Contact.cpp                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/26 14:23:16 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/06 17:31:57 by eunson           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Contact.hpp"
 
 void	deadSignalCheck(void);
@@ -77,7 +65,7 @@ void	Contact::show()
 
 	for (int i = 0; i < 3; i++)
 	{
-		std::cout.width(10);
+		std::cout << std::setw(10);
 		if (output[i].length() > 10)
 		{
 			output[i] = output[i].replace(9, 10, ".");

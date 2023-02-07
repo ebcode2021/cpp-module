@@ -1,18 +1,7 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Contact.hpp                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/26 14:17:54 by eunson            #+#    #+#             */
-/*   Updated: 2023/01/27 17:31:01 by eunson           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef CONTACT_H
 #define CONTACT_H
 
+#include <iomanip>
 #include <iostream>
 #include <string>
 
@@ -26,12 +15,9 @@ class Contact
 		std::string darkestSecret;
 
 	public :
-		// Contact();
-		// ~Contact();
 		void	add();
 		void	show();
 		void	showDetail();
-		
 };
 
 #endif

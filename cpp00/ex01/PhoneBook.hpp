@@ -14,7 +14,6 @@ class PhoneBook
 		void		add(int idx);
 		void		search();
 		void		searchInformation();
-
 };
 
 #endif

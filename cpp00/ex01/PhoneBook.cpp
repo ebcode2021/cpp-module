@@ -1,24 +1,10 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/26 14:17:43 by eunson            #+#    #+#             */
-/*   Updated: 2023/01/27 17:56:38 by eunson           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <iomanip>
 #include <iostream>
 #include <string>
 
 #include "PhoneBook.hpp"
-//#include "utils.cpp"
 
 void	deadSignalCheck(void);
-#define WIDTH 10;
 
 void	PhoneBook::add(int idx)
 {
@@ -31,7 +17,7 @@ void	printHeader(void)
 	
 	for (int i = 0; i < 4; i++)
 	{
-		std::cout.width(10);
+		std::cout << std::setw(10);
 		std::cout << header[i];
 		if (i < 3)
 			std::cout << "|";
@@ -47,9 +33,19 @@ void	PhoneBook::searchInformation(void)
 
 	std::cout << "Please enter the index of the contact you want to see : ";
 	std::getline(std::cin, input);
+	for (int i = 0; i < input.length(); i++)
+	{
+		if (std::isdigit(input[i]) == 0)
+		{
+			std::cout << "Error::it's not number" << std::endl;
+			return ;
+		}
+	}
 	idx = std::atoi(input.c_str());
 	if (idx >= 1 && idx <= 8)
 		this->contact[idx - 1].showDetail();
+	else
+		std::cout << "Error::Invalid number" << std::endl;
 }
 
 void	PhoneBook::search(void)
@@ -57,7 +53,7 @@ void	PhoneBook::search(void)
 	printHeader();
 	for (int i = 0; i < 8; i++)
 	{
-		std::cout.width(10);
+		std::cout << std::setw(10);
 		std::cout << i + 1;
 		std::cout << "|";
 		this->contact[i].show();
