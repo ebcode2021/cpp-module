@@ -6,13 +6,14 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 19:58:41 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/02 21:33:56 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/07 18:39:27 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-Zombie::Zombie(void){
+Zombie::Zombie(void)
+{
 	this->_name = "eunson";
 }
 

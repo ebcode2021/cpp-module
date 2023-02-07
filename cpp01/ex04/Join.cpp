@@ -6,7 +6,7 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 22:10:14 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/05 19:21:29 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/07 18:40:05 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	Join::replace(std::string file_name, std::string to_find, std::string replace)
 {
-	int			idx;
+	int				idx;
 	std::ifstream	infile;
 	std::ofstream	outfile;
 	std::string 	pre_oneLine;

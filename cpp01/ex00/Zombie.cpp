@@ -6,15 +6,16 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 19:13:45 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/02 19:23:50 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/07 18:39:11 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-Zombie::Zombie(void){
+Zombie::Zombie(void)
+{
 	this->_name = "eunson";
-};
+}
 
 Zombie::Zombie(std::string name)
 {
@@ -24,7 +25,7 @@ Zombie::Zombie(std::string name)
 Zombie::~Zombie(void)
 {
 	std::cout << "행복했다 " << this->_name << std::endl;
-};
+}
 
 void Zombie::announce(void)
 {
