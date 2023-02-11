@@ -23,6 +23,6 @@ class	Fixed
 		int		toInt(void) const;
 };
 
-std::ostream& operator << (std::ostream &out, Fixed& fixed);
+std::ostream& operator << (std::ostream &out, const Fixed& fixed);
 
 #endif

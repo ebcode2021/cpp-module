@@ -6,7 +6,7 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 19:13:45 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/07 18:39:11 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/11 15:34:53 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ Zombie::Zombie(std::string name)
 
 Zombie::~Zombie(void)
 {
-	std::cout << "행복했다 " << this->_name << std::endl;
+	std::cout << "죽는 애 -> " << this->_name << std::endl;
 }
 
 void Zombie::announce(void)

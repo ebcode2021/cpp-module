@@ -6,7 +6,7 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 22:10:14 by eunbison          #+#    #+#             */
-/*   Updated: 2023/02/07 18:40:05 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/11 15:28:38 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	Join::replace(std::string file_name, std::string to_find, std::string repla
 	infile.open(file_name);
 	if (infile.fail())
 	{
-		std::cerr << "ya" << std::endl;
+		std::cerr << "file not opened" << std::endl;
 		exit(1);
 	}
 	outfile.open(file_name + ".replace");
@@ -38,8 +38,7 @@ void	Join::replace(std::string file_name, std::string to_find, std::string repla
 			if (idx == -1)
 				break ; 
 			pre_oneLine += oneLine.substr(0, idx) + replace;
-			oneLine =  oneLine.substr(idx + replace.length(), oneLine.length());
-			std::cout << oneLine << std::endl;
+			oneLine =  oneLine.substr(idx + to_find.length(), oneLine.length());
 		}
 		outfile << pre_oneLine + oneLine << std::endl;
 	}

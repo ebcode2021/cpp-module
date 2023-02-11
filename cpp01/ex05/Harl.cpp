@@ -6,7 +6,7 @@
 /*   By: eunson <eunson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 19:40:34 by eunson            #+#    #+#             */
-/*   Updated: 2023/02/05 20:13:34 by eunson           ###   ########.fr       */
+/*   Updated: 2023/02/11 15:18:06 by eunson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,10 @@ void Harl::complain(std::string level)
 	for (int i = 0; i < 4; i++)
 	{
 		if (level.compare(levels[i]) == 0)
+		{
 			(this->*pointer_func[i])();
+			return ;
+		}
 	}
+	std::cout << "Error :: Not found Level!" << std::endl;
 }
