@@ -9,8 +9,19 @@ Fixed::Fixed(void)
 Fixed::Fixed(const Fixed& prev)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	//this->_raw = prev.getRawBits();
 	*this = prev;
+}
+
+Fixed::Fixed(const int integer)
+{
+	std::cout << "Int constructor called" << std::endl;
+	this->_raw = integer << this->_fraction;
+}
+
+Fixed::Fixed(const float data)
+{
+	std::cout << "Float constructor called" << std::endl;
+	this->_raw = roundf(data * (1 << this->_fraction));
 }
 
 Fixed&	Fixed::operator=(const Fixed& prev)
@@ -27,7 +38,6 @@ Fixed::~Fixed()
 
 int	Fixed::getRawBits(void) const
 {
-	std::cout << "getRawBits member function called" << std::endl;
 	return (this->_raw);
 }
 
@@ -36,4 +46,19 @@ void	Fixed::setRawBits(int const raw)
 	this->_raw = raw;
 }
 
-// update functions
+float	Fixed::toFloat(void) const
+{
+	return ((float)this->_raw / (1 << this->_fraction));
+}
+
+int	Fixed::toInt(void) const
+{
+	return (this->_raw >> this->_fraction);
+}
+
+/* assignment operators*/
+std::ostream& operator<<(std::ostream &out, const Fixed& fixed)
+{
+	out << fixed.toFloat();
+	return out;
+}
