@@ -87,7 +87,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 		std::cout << "Already dead.." << std::endl;
 		return ;
 	}
-	std::cout <<  this->getName() << " take " << amount \
+	std::cout << "ClapTrap " << this->getName() << " take " << amount \
 				<< " points of damage!" << std::endl;
 	if (this->_hit_points < amount)
 		this->_hit_points = 0;
@@ -107,7 +107,8 @@ void ClapTrap::beRepaired(unsigned int amount)
 		std::cout << "Nope!" << std::endl;
 		return ;
 	}
-	std::cout << this->getName() << " take " << amount << " points of repaired!" << std::endl;
+	std::cout << "ClapTrap " << this->getName() << " take " << amount \
+				<< " points of repaired!" << std::endl;
 	this->_energy_points -= 1;
 	this->_hit_points += amount;
 }
