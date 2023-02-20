@@ -8,31 +8,34 @@ class	Bureaucrat
 	private :
 		const std::string	_name;
 		int					_grade;
+		Bureaucrat& operator=(const Bureaucrat&);
 
 	public :
 		// OCCF
-		//Bureaucrat();
-		//Bureaucrat(const Bureaucrat&);
-		//Bureaucrat& operator=(const Bureaucrat&);
-		////~Bureaucrat();
+		Bureaucrat();
+		Bureaucrat(const Bureaucrat&);
+		~Bureaucrat();
 
-		//Bureaucrat(std::string);
+		// parameter consturctor
+		Bureaucrat(std::string, int);
 
-		//std::string	getName() const;
-		//int			getGrade() const;
+		std::string	getName() const;
+		int			getGrade() const;
 
 		void		increaseGrade();
-	//	void		decreaseGrade();
+		void		decreaseGrade();
 
-		// class GradeTooHighException : public std::exception
-		// {
-		// 	const char* what() const noexcept;
-		// };
+		class GradeTooHighException : public std::exception
+		{
+			const char* what() const throw();
+		};
 
-		// class GradeTooLowException : public std::exception
-		// {
-		// 	const char* what() const noexcept
-		// };
+		class GradeTooLowException : public std::exception
+		{
+			const char* what() const throw();
+		};
 };
+
+std::ostream& operator << (std::ostream &out, const Bureaucrat& bureaucrat);
 
 #endif

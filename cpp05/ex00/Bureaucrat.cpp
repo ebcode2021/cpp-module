@@ -1,21 +1,77 @@
 #include "Bureaucrat.hpp"
 
-// const char* Bureaucrat::GradeTooHighException::what() const noexcept
-// {
-// 	return "TOO HIGH!!!!!";
-// }
-
-// const char*	Bureaucrat::GradeTooLowException::what() const noexcept
-// {
-// 	return "TOO LOW!!!!!";
-// }
-
-const char* GradeTooHighException::what() const throw()
+// OCCF
+Bureaucrat::Bureaucrat() : _name("default"), _grade(150) 
 {
-	return "hi";
+	std::cout << "Bureaucrat :: default constructor" << std::endl;
 }
+
+Bureaucrat::Bureaucrat(const Bureaucrat& bureaucrat) : _name(bureaucrat._name), _grade(bureaucrat._grade)
+{
+	std::cout << "Bureaucrat :: copy constructor" << std::endl;
+};
+
+Bureaucrat& Bureaucrat::operator=(const Bureaucrat& bureaucrat)
+{
+	(void)bureaucrat;
+	std::cout << "Bureaucrat :: copy assignment operator" << std::endl;
+	return (*this);
+}
+
+Bureaucrat::~Bureaucrat()
+{
+	std::cout << "Bureaucrat :: destructor" << std::endl;
+}
+
+// parameter constructor
+Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name), _grade(grade)
+{
+	if (grade < 1)
+		throw GradeTooHighException();
+	if (grade > 150)
+		throw GradeTooLowException();
+	std::cout << "Bureaucrat :: parameter constructor" << std::endl;
+}
+
+// exception
+const char* Bureaucrat::GradeTooHighException::what() const throw()
+{
+	return "TOO HIGH!!!!!";
+}
+
+const char*	Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return "TOO LOW!!!!!";
+}
+
+// getter
+std::string Bureaucrat::getName() const
+{
+	return (this->_name);
+}
+
+int Bureaucrat::getGrade() const
+{
+	return (this->_grade);
+}
+
 void	Bureaucrat::increaseGrade()
 {
-	throw GradeTooHighException();
+	if (this->_grade == 1)
+		throw GradeTooHighException();
 	this->_grade -= 1;
+}
+
+void	Bureaucrat::decreaseGrade()
+{
+	if (this->_grade == 150)
+		throw GradeTooLowException();
+	this->_grade += 1;
+}
+
+std::ostream& operator << (std::ostream &out, const Bureaucrat& bureaucrat)
+{
+	out << bureaucrat.getName() << ", bureaucrat grade " 
+		<< bureaucrat.getGrade() << std::endl;
+	return (out);
 }
