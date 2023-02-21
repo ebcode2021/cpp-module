@@ -1,63 +1,79 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
+
 
 int	main()
 {
 	{
-		std::cout << "----------------[test1]----------------" << std::endl;
-		try
-		{
-			Form form;
-			Bureaucrat bureaucrat("eunson", 1);
-			bureaucrat.signForm(form);
-			std::cout << "별 문제 없으면 보이는 메시지" << std::endl;
-		}
-		catch(const std::exception& e)
-		{
-			std::cerr << e.what() << '\n';
-		}
+		// signed(145), execute(137)
+		std::cout << "----------------[ShrubberyCreationForm]----------------" << std::endl;
+		
+		AForm *form = new ShrubberyCreationForm("shru_form");
+		std::cout << (*form);
+
+		Bureaucrat success("success", 1);
+		Bureaucrat sign_failed("sign_failed", 146);
+		Bureaucrat execute_failed("execute_failed", 138);
+
+		success.signForm(*form);
+		success.executeForm(*form);
+
+		sign_failed.signForm(*form);
+		sign_failed.executeForm(*form);
+
+		execute_failed.signForm(*form);
+		execute_failed.executeForm(*form);
+ 
+		delete form;
 	}
 
 	{
-		std::cout << "\n----------------[test2]----------------" << std::endl;
-		try
-		{
-			Form form("low_form", 0, 150, 150);
-			Bureaucrat bureaucrat("eunson", 100);
-			std::cout << "\n- " << bureaucrat.getName() << "의 정보" << std::endl;
-			std::cout << bureaucrat;
-			std::cout << "\n- 사인 전 " << form.getName() << "의 정보" << std::endl;
-			std::cout << form;
-			bureaucrat.signForm(form);
-			std::cout << "\n- 사인 후" << form.getName() << "의 정보" << std::endl;
-			std::cout << form;
-		}
-		catch(const std::exception& e)
-		{
-			std::cerr << e.what() << '\n';
-		}
+		// signed(72), execute(45)
+		std::cout << "\n----------------[RobotomyRequestForm]----------------" << std::endl;
+		
+		AForm *form = new RobotomyRequestForm("robo_form");
+		std::cout << (*form);
+
+		Bureaucrat success("success", 1);
+		Bureaucrat sign_failed("sign_failed", 74);
+		Bureaucrat execute_failed("execute_failed", 46);
+
+		success.signForm(*form);
+		success.executeForm(*form);
+
+		sign_failed.signForm(*form);
+		sign_failed.executeForm(*form);
+
+		execute_failed.signForm(*form);
+		execute_failed.executeForm(*form);
+ 
+		delete form;
 	}
 
 	{
-		std::cout << "\n----------------[test3]----------------" << std::endl;
-		try
-		{
-			Form form;
-			Bureaucrat bureaucrat("eunson", 2);
-			bureaucrat.signForm(form);
-			std::cout << form;
-			std::cout << "\n- 등급 올려보기" << std::endl;
-			bureaucrat.increaseGrade();
-			bureaucrat.signForm(form);
-			std::cout << form;
-			std::cout << "\n- 이미 사인한 서류에 재접근하기" << std::endl;
-			bureaucrat.signForm(form);
-			std::cout << form;
-		}
-		catch(const std::exception& e)
-		{
-			std::cerr << e.what() << '\n';
-		}
+		// signed(25), execute(5)
+		std::cout << "\n----------------[PresidentialPardonForm]----------------" << std::endl;
+		
+		AForm *form = new PresidentialPardonForm("pres_form");
+		std::cout << (*form);
+
+		Bureaucrat success("success", 1);
+		Bureaucrat sign_failed("sign_failed", 26);
+		Bureaucrat execute_failed("execute_failed", 6);
+
+		success.signForm(*form);
+		success.executeForm(*form);
+
+		sign_failed.signForm(*form);
+		sign_failed.executeForm(*form);
+
+		execute_failed.signForm(*form);
+		execute_failed.executeForm(*form);
+ 
+		delete form;
 	}
 	return (0);
 }

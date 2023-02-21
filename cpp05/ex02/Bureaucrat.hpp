@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-#include "Form.hpp"
+class AForm;
 
 class	Bureaucrat
 {
@@ -39,7 +39,8 @@ class	Bureaucrat
 		};
 
 		// member functions
-		void	signForm(Form&);
+		void	signForm(AForm&);
+		void	executeForm(AForm const &form);
 };
 
 std::ostream& operator << (std::ostream &out, const Bureaucrat& bureaucrat);
