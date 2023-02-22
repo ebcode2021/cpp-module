@@ -10,7 +10,7 @@ Cat::Cat()
 
 Cat::Cat(const Cat& cat)
 {
-	std::cout << "Animal :: copy constructor" << std::endl;
+	std::cout << "Cat :: copy constructor" << std::endl;
 	this->_type = cat._type;
 }
 

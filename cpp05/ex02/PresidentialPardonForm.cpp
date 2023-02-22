@@ -1,6 +1,4 @@
 #include "PresidentialPardonForm.hpp"
-#include <fstream>
-#include <cstdlib>
 
 // OCCF
 PresidentialPardonForm::PresidentialPardonForm() : AForm("PresidentialPardonForm", "none", 0, 25, 5)

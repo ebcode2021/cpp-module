@@ -2,17 +2,12 @@
 #include "Cat.hpp"
 #include "Dog.hpp"
 
-// void	leaks()
-// {
-// 	system("leaks a.out");
-// }
-
 int	main()
 {
-	// atexit(leaks);
 	std::cout << "[subject 예제]" << std::endl;
 	const Animal*	dog = new Dog();
 	const Animal*	cat = new Cat();
+	// const Animal animal;
 
 	delete cat;
 	delete dog;
