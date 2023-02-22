@@ -10,7 +10,7 @@ class	AForm
 		const std::string	_name;
 		const std::string	_target;
 		bool				_signed;
-		int					_signed_grade;
+		const int			_signed_grade;
 		const int			_execute_grade;
 		AForm& operator=(const AForm&);
 
