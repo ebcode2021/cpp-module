@@ -28,13 +28,15 @@ class	Array
 		{
 			this->_size = a._size;
 			this->_array = new T[a._size];
+			for (unsigned int i= 0; i < a._size; i++)
+					this->_array[i] = a._array[i];
 		};
 
 		Array& operator=(const Array& a)
 		{
 			if (this != &a)
 			{
-				delete this->_array;
+				delete[] this->_array;
 				this->_size = a._size;
 				this->_array = new T[a._size];
 				for (unsigned int i= 0; i < a._size; i++)
@@ -45,7 +47,7 @@ class	Array
 
 		~Array()
 		{
-			delete (this->_array);
+			delete[] this->_array;
 		};
 
 		// method

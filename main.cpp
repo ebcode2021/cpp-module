@@ -44,4 +44,15 @@ int main()
 	// b = a; // 할당대입
 	int a = 5;
 	a = 6;
+	int a = 1;
+	char a = (char)a;
+	//a = static_cast< : 내가 아는 그거.
+	//interpret_cast<> : 주소변환
+	//dynamic_cast<> 동적으로 작동은 안하고. 그냥..typeinfo를 사실 확인하는게 맞는데, 98식으로 ? 뇌피셜 ㅎㅎ
+	int a; 		부모
+	int b;		자식
+	a = b;
+	b = a;
+	if (dynamic_cast<a>(b) == NULL)
+
 }
