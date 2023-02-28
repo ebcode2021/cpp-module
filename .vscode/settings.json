@@ -66,6 +66,9 @@
 		"stack": "cpp",
 		"filesystem": "cpp",
 		"numeric": "cpp",
-		"random": "cpp"
+		"random": "cpp",
+		"list": "cpp",
+		"memory_resource": "cpp",
+		"queue": "cpp"
 	}
 }
