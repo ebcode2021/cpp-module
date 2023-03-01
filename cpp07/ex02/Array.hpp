@@ -15,7 +15,7 @@ class	Array
 		Array()
 		{
 			this->_size = 0;
-			this->_array = new T;
+			this->_array = new T[1];
 		};
 
 		Array(unsigned int n)
