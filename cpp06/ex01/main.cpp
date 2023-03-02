@@ -24,6 +24,7 @@ int main()
 
 	std::cout << "[deserialize]" << std::endl;
 	Data*	restore_data = deserialize(save_data);
+
 	std::cout << restore_data << std::endl;
 	std::cout << data.num << std::endl;
 	return (0);
