@@ -1,0 +1,40 @@
+#ifndef BTC_EXCHANGE_HPP
+# define BTC_EXCHANGE_HPP
+
+# include <iostream>
+# include <fstream>
+# include <sstream>
+# include <vector>
+# include <map>
+
+class	BitcoinExchange
+{
+	private :
+		std::map<std::string, float>	_data;
+		std::string						_csvFile;
+
+	public :
+		// OCCF
+		BitcoinExchange();
+		BitcoinExchange(const BitcoinExchange&);
+		BitcoinExchange& operator=(const BitcoinExchange&);
+		~BitcoinExchange();
+
+		// constructor
+		BitcoinExchange(char *);
+
+
+		// method
+		bool	isExchangeValue(const std::string&);
+		bool	checkDataFormat(const std::string&, const float);
+		bool	initDataFromFile();
+		int		convertDateToDay(const std::string&);
+		std::string	findPreviousDate(const std::string&);
+
+		// print method
+		void	printError(const std::string&);
+		void	printCalculate(const std::string&, const float);
+		void	printResult(const std::string&, const float value, const float);
+		void	run(const std::string&);
+};
+#endif
