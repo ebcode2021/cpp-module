@@ -23,18 +23,21 @@ class	BitcoinExchange
 		// constructor
 		BitcoinExchange(char *);
 
-
 		// method
-		bool	isExchangeValue(const std::string&);
-		bool	checkDataFormat(const std::string&, const float);
-		bool	initDataFromFile();
-		int		convertDateToDay(const std::string&);
+		void		run(const std::string&);
+		bool		initDataFromFile();
+		int			convertDateToDay(const std::string&);
 		std::string	findPreviousDate(const std::string&);
 
+		// boolean method
+		bool		isExchangeValue(const std::string&);
+		bool		checkDateFormat(const std::string&);
+		bool		checkValueFormat(const float);
+
+
 		// print method
-		void	printError(const std::string&);
-		void	printCalculate(const std::string&, const float);
-		void	printResult(const std::string&, const float value, const float);
-		void	run(const std::string&);
+		void		printError(const std::string&);
+		void		printCalculate(const std::string&, const float);
+		void		printResult(const std::string&, const float value, const float);
 };
 #endif
