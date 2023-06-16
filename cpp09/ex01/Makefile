@@ -1,5 +1,5 @@
 # PROGRAM_NAME
-NAME = btc
+NAME = RPN
 
 # VARIABLE
 CC = c++
@@ -7,7 +7,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
 
 SRCS = main.cpp	\
-	   BitcoinExchange.cpp
+	   RPN.cpp
 
 
 OBJS = $(SRCS:.cpp=.o)
@@ -19,6 +19,7 @@ OBJS = $(SRCS:.cpp=.o)
 $(NAME) : $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 	make clean
+	rm -rf /Users/eunson/Library/Caches
 	@echo "$(GREEN) ** Compile Done!! ** $(DEFAULT)"
 
 all : $(NAME)
