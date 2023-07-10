@@ -2,15 +2,17 @@
 # define PMERGE_ME_HPP
 
 # include <iostream>
+# include <sstream>
 # include <ctime>
-# include <vector>
 # include <deque>
+# include <list>
 
 class	PmergeMe
 {
 	private :
 		std::deque<int>		_deque;
-		std::vector<int>	_vector;
+		std::list<int>		_list;
+		
 
 	public :
 		// OCCF
@@ -22,11 +24,13 @@ class	PmergeMe
 
 		// method
 		void	run();
-		void	sort();
+		
+		// validate
+		bool	parseArguments(char *[]);
 		
 		// print method
-		void		printResult(std::deque<int>, clock_t, clock_t);
-		void		printList();
+		void		printSortChange();
+		void		printTimeStamp(size_t, clock_t, clock_t);
 };
 
 #endif
