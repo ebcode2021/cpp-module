@@ -8,11 +8,7 @@ static	int	isLeapYear(int year);
 /* OCCF */
 BitcoinExchange::BitcoinExchange(){}
 
-BitcoinExchange::BitcoinExchange(const BitcoinExchange& btcExchange)
-{
-	this->_data = btcExchange._data;
-	this->_csvFile = btcExchange._csvFile;
-}
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& btcExchange) : _data(btcExchange._data), _csvFile(btcExchange._csvFile) {}
 
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& btcExchange)
 {
@@ -54,8 +50,10 @@ void	BitcoinExchange::run(const std::string& input)
 				printError("bad input => " + line);
 				continue ;
 			}
+
 			std::string	date = splittedLine[0];
 			std::string	value = splittedLine[1];
+			
 			if (checkDateFormat(date) == true)
 			{
 				float newValue;
@@ -67,6 +65,7 @@ void	BitcoinExchange::run(const std::string& input)
 					printError("value is not convert to number.");
 					continue ;
 				}
+
 				if (checkValueFormat(newValue) == true)
 					printCalculate(date, newValue);
 			}

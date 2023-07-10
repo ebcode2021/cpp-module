@@ -3,10 +3,7 @@
 /* OCCF */
 RPN::RPN(){}
 
-RPN::RPN(const RPN& rpn)
-{
-	this->_stack = rpn._stack;
-}
+RPN::RPN(const RPN& rpn) : _stack(rpn._stack) {}
 
 RPN& RPN::operator=(const RPN& rpn)
 {
@@ -20,8 +17,7 @@ RPN& RPN::operator=(const RPN& rpn)
 RPN::~RPN(){}
 
 /* constructor */
-RPN::RPN(char *argument)
-{
+RPN::RPN(char *argument) {
 	run(std::string(argument));
 }
 

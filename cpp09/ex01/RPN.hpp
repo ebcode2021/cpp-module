@@ -19,9 +19,9 @@ class	RPN
 
 		// constructor
 		RPN(char *);
-		void	run(const std::string&);
 
 		// method
+		void	run(const std::string&);
 		void	printErrorWithExit();
 
 };
