@@ -1,16 +1,27 @@
 # include "PmergeMe.hpp"
 
+/* delare function */
+template<typename Container>
+void	merge(Container& left, Container& right, Container& sequence);
+template<typename Container>
+void	mergeInsertionSort(Container& sequence);
+int		stoi(std::string& str);
+void 	split(const std::string& str, char delimiter, std::list<std::string>& tokens);
+void	printErrorWithExit();
+
+
 /* OCCF */
 PmergeMe::PmergeMe(){}
 
-PmergeMe::PmergeMe(const PmergeMe& pmergeMe) : _list(pmergeMe._list), _deque(pmergeMe._deque) {}
+PmergeMe::PmergeMe(const PmergeMe& pmergeMe) : _deque(pmergeMe._deque), _list(pmergeMe._list), _origin(pmergeMe._origin) {}
 
 PmergeMe& PmergeMe::operator=(const PmergeMe& pmergeMe)
 {
 	if (this != &pmergeMe)
 	{
-		this->_list = pmergeMe._list;
 		this->_deque = pmergeMe._deque;
+		this->_list = pmergeMe._list;
+		this->_origin = pmergeMe._origin;
 	}
 	return (*this);
 }
@@ -19,22 +30,18 @@ PmergeMe::~PmergeMe(){}
 
 PmergeMe::PmergeMe(char *argv[])
 {
-	if (parseArguments(argv) == true) {
-		run();
-	}
-	else {
-		std::cout << "Error" << std::endl;
-	}
+	parseArguments(argv);
+	run();
 }
 
 /* method */
-bool	PmergeMe::parseArguments(char *argv[]) {
+void	PmergeMe::parseArguments(char *argv[]) {
 
 	std::list<std::string>::iterator it;
 
 	for (size_t i = 0; argv[i] != NULL; i++)
 	{
-		std::string	argument(argv[1]);
+		std::string	argument(argv[i]);
 		std::list<std::string>	numbers;
 		split(argument, ' ', numbers);
 
@@ -42,6 +49,7 @@ bool	PmergeMe::parseArguments(char *argv[]) {
 			int number = stoi(*it);
 			this->_deque.push_back(number);
 			this->_list.push_back(number);
+			this->_origin.push_back(number);
 		}
 	}
 }
@@ -53,15 +61,62 @@ void	PmergeMe::run()
 	clock_t				listTime;
 
 	startTime = clock();
-	// sort(this->_deque)
+	mergeInsertionSort(this->_deque);
 	dequeTime = clock() - startTime;
 
 	startTime = clock();
-	// sort(this->_list);
+	mergeInsertionSort(this->_list);
 	listTime = clock() - startTime;
 
 	printSortChange();
-	printTimeStamp(this->_list.size(), dequeTime, listTime);
+	printTimeStamp(dequeTime, listTime);
+}
+
+template<typename Container>
+void	merge(Container& left, Container& right, Container& sequence)
+{
+	typename Container::iterator itLeft = left.begin();
+	typename Container::iterator itRight = right.begin();
+
+	while (itLeft != left.end() && itRight != right.end())
+	{
+		if (*itLeft < * itRight) {
+			sequence.push_back(*itLeft);
+			++itLeft;
+		}
+		else {
+			sequence.push_back(*itRight);
+			++itRight;
+		}
+	}
+
+	while (itLeft != left.end()) {
+		sequence.push_back(*itLeft);
+		++itLeft;
+	}
+
+	while (itRight != right.end()) {
+		sequence.push_back(*itRight);
+		++itRight;
+	}
+}
+
+template<typename Container>
+void	mergeInsertionSort(Container& sequence)
+{
+	typename Container::iterator it = sequence.begin();
+	std::advance(it, sequence.size() / 2);
+
+	if (sequence.size() <= 1)
+		return ;
+	Container left(sequence.begin(), it);
+	Container right(it, sequence.end());
+
+	mergeInsertionSort(left);
+	mergeInsertionSort(right);
+
+	sequence.clear();
+	merge(left, right, sequence);
 }
 
 void split(const std::string& str, char delimiter, std::list<std::string>& tokens) {
@@ -77,9 +132,10 @@ void split(const std::string& str, char delimiter, std::list<std::string>& token
 int	stoi(std::string& str)
 {
 	long long	result = 0;
-
-	if (str[0] == '-')
+	
+	if (str[0] == '-') {
 		printErrorWithExit();
+	}
 
 	for (size_t i = 0; i < str.length(); i++)
 	{
@@ -97,21 +153,21 @@ int	stoi(std::string& str)
 }
 
 /* print method */
-void	PmergeMe::printTimeStamp(size_t totalCnt, clock_t dequeTime, clock_t listTime)
+void	PmergeMe::printTimeStamp(clock_t dequeTime, clock_t listTime)
 {
-	std::cout << "Time to process a range of " << totalCnt << " elements with std::deque : " << dequeTime << " us" << std::endl;
-	std::cout << "Time to process a range of " << totalCnt << " elements with std::list : " << listTime << " us" << std::endl;
+	std::cout << "Time to process a range of " << this->_origin.size() << " elements with std::deque : " << dequeTime << " us" << std::endl;
+	std::cout << "Time to process a range of " << this->_origin.size() << " elements with std::list : " << listTime << " us" << std::endl;
 }
 
 void	PmergeMe::printSortChange()
 {
 	std::list<int>::iterator	it;
-	std::list<int>				copyList = this->_list;
+	std::list<int>				copyList = this->_origin;
 	copyList.sort();
 
 	std::cout << "Before: ";
 
-	for (it = this->_list.begin(); it != this->_list.end(); it++)
+	for (it = this->_origin.begin(); it != this->_origin.end(); it++)
 		std::cout << (*it) << " ";
 	std::cout << std::endl;
 

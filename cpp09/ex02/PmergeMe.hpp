@@ -12,6 +12,7 @@ class	PmergeMe
 	private :
 		std::deque<int>		_deque;
 		std::list<int>		_list;
+		std::list<int>		_origin;
 		
 
 	public :
@@ -24,13 +25,11 @@ class	PmergeMe
 
 		// method
 		void	run();
-		
-		// validate
-		bool	parseArguments(char *[]);
+		void	parseArguments(char *[]);
 		
 		// print method
-		void		printSortChange();
-		void		printTimeStamp(size_t, clock_t, clock_t);
+		void	printSortChange();
+		void	printTimeStamp(clock_t, clock_t);
 };
 
 #endif

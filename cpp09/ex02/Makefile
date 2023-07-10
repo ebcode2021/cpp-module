@@ -1,5 +1,5 @@
 # PROGRAM_NAME
-NAME = RPN
+NAME = PmergeMe
 
 # VARIABLE
 CC = c++
