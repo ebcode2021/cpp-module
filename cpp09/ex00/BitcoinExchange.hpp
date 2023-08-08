@@ -1,6 +1,7 @@
 #ifndef BTC_EXCHANGE_HPP
 # define BTC_EXCHANGE_HPP
 
+# include <stdlib.h>
 # include <iostream>
 # include <fstream>
 # include <sstream>

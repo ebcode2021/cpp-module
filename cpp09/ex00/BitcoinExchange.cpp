@@ -77,7 +77,7 @@ void	BitcoinExchange::run(const std::string& input)
 
 bool	BitcoinExchange::initDataFromFile()
 {
-	std::ifstream	file(this->_csvFile);
+	std::ifstream	file(this->_csvFile.c_str());
 
 	if (file.is_open())
 	{

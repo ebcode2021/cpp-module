@@ -155,8 +155,8 @@ int	stoi(std::string& str)
 /* print method */
 void	PmergeMe::printTimeStamp(clock_t dequeTime, clock_t listTime)
 {
-	std::cout << "Time to process a range of " << this->_origin.size() << " elements with std::deque : " << dequeTime << " us" << std::endl;
-	std::cout << "Time to process a range of " << this->_origin.size() << " elements with std::list : " << listTime << " us" << std::endl;
+	std::cout << "Time to process a range of " << this->_origin.size() << " elements with std::deque : " << dequeTime * 0.001<< " us" << std::endl;
+	std::cout << "Time to process a range of " << this->_origin.size() << " elements with std::list : " << listTime * 0.001<< " us" << std::endl;
 }
 
 void	PmergeMe::printSortChange()
