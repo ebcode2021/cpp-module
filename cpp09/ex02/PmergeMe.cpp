@@ -4,6 +4,8 @@
 template<typename Container>
 void	merge(Container& left, Container& right, Container& sequence);
 template<typename Container>
+void	insertion(Container& sequence);
+template<typename Container>
 void	mergeInsertionSort(Container& sequence);
 int		stoi(std::string& str);
 void 	split(const std::string& str, char delimiter, std::list<std::string>& tokens);
@@ -102,13 +104,33 @@ void	merge(Container& left, Container& right, Container& sequence)
 }
 
 template<typename Container>
+void	insertion(Container& sequence)
+{
+	size_t	i, j;
+	int target;
+
+	for (i = 1; i < sequence.size(); i++)
+	{
+		target = sequence[i];
+		for (j = i - 1; j >= 0; j--)
+		{
+			if (sequence[j] > target)
+				sequence[j + 1] = sequence[j];
+			else
+				break ;
+		}
+		sequence[j + 1] = target;
+	}
+}
+
+template<typename Container>
 void	mergeInsertionSort(Container& sequence)
 {
 	typename Container::iterator it = sequence.begin();
 	std::advance(it, sequence.size() / 2);
 
-	if (sequence.size() <= 1)
-		return ;
+	if (sequence.size() <= 4)
+		insertion(sequence);
 	Container left(sequence.begin(), it);
 	Container right(it, sequence.end());
 
