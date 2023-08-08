@@ -72,7 +72,10 @@ void	RPN::run(const std::string& input)
 		else
 			printErrorWithExit();
 	}
-	std::cout << this->_stack.top() << std::endl;
+	if (this->_stack.size() != 1)
+		printErrorWithExit();
+	else
+		std::cout << this->_stack.top() << std::endl;
 }
 
 void	RPN::printErrorWithExit()

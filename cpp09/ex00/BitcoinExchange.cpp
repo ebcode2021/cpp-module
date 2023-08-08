@@ -33,7 +33,7 @@ BitcoinExchange::BitcoinExchange(char *inputFile) : _csvFile("data.csv")
 // method
 void	BitcoinExchange::run(const std::string& input)
 {
-	std::ifstream	file(input);
+	std::ifstream	file(input.c_str());
 
 	if (file.is_open())
 	{
