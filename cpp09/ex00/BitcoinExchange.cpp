@@ -4,6 +4,7 @@
 static std::vector<std::string> split(const std::string& str, const std::string& delims);
 static	int	calculateTotalDay(int year, int month, int day);
 static	int	isLeapYear(int year);
+static	float customStof(const std::string& str);
 
 /* OCCF */
 BitcoinExchange::BitcoinExchange(){}
@@ -284,4 +285,33 @@ static	int	isLeapYear(int year)
 	if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0))
 		return (true);
 	return (false);
+}
+
+static float customStof(const std::string& str)
+{
+	bool	flag;
+	size_t	under;
+	float	res;
+
+	flag = true;
+	under = 1;
+	res = 0;
+
+	for (size_t i = 0; i < str.size(); i++)
+	{
+		if (str == ".")
+		{
+			flag = false;
+			continue;
+		}
+		if (str.c_str() < '0' || str.c_str() > '9')
+			throw exception();
+		if (flag == true)
+			res = res * 10 + std::atoi(str[i]);
+		else
+		{
+			res = res + std::atoi(str[i]) * pow(0.1, under);
+			under++;
+		}
+	}
 }

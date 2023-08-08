@@ -3,6 +3,7 @@
 
 # include <stdlib.h>
 # include <iostream>
+# include <cmath>
 # include <fstream>
 # include <sstream>
 # include <vector>

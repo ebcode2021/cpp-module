@@ -33,8 +33,6 @@ void	RPN::run(const std::string& input)
 		if (isdigit(token[0]))
 		{
 			int	num = std::atoi(token.c_str());
-			if (num < -9 || num > 9)
-				printErrorWithExit();
 			this->_stack.push(num);
 		}
 		else if (token[0] == '+' || token[0] == '-' || token[0] == '/' || token[0] == '*')
