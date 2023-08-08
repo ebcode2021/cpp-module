@@ -4,7 +4,7 @@
 static std::vector<std::string> split(const std::string& str, const std::string& delims);
 static	int	calculateTotalDay(int year, int month, int day);
 static	int	isLeapYear(int year);
-static	float customStof(const std::string& str);
+static	float customStof(std::string& str);
 
 /* OCCF */
 BitcoinExchange::BitcoinExchange(){}
@@ -59,8 +59,13 @@ void	BitcoinExchange::run(const std::string& input)
 			{
 				float newValue;
 
+				if (value[0] == '-')
+				{
+					printError("not a positive number.");
+					continue;
+				}
 				try {
-					newValue = std::stof(value);
+					newValue = customStof(value);
 				}
 				catch (std::exception &ex) {
 					printError("value is not convert to number.");
@@ -94,7 +99,7 @@ bool	BitcoinExchange::initDataFromFile()
 			std::string	exchange_rate = splittedData[1];
 
 			try {
-				exchange = std::stof(exchange_rate);
+				exchange = customStof(exchange_rate);
 			}
 			catch (const std::exception& e) {
 				printError("check the status of the csv file.");
@@ -287,7 +292,7 @@ static	int	isLeapYear(int year)
 	return (false);
 }
 
-static float customStof(const std::string& str)
+static float customStof(std::string& str)
 {
 	bool	flag;
 	size_t	under;
@@ -299,19 +304,21 @@ static float customStof(const std::string& str)
 
 	for (size_t i = 0; i < str.size(); i++)
 	{
-		if (str == ".")
+		const char	currentChar = str[i];
+		if (str[i] == '.')
 		{
 			flag = false;
 			continue;
 		}
-		if (str.c_str() < '0' || str.c_str() > '9')
-			throw exception();
+		if (str[i] < '0' || str[i] > '9')
+			throw std::exception();
 		if (flag == true)
-			res = res * 10 + std::atoi(str[i]);
+			res = res * 10 + std::atoi(&currentChar);
 		else
 		{
-			res = res + std::atoi(str[i]) * pow(0.1, under);
+			res = res + std::atoi(&currentChar) * pow(0.1, under);
 			under++;
 		}
 	}
+	return (res);
 }
