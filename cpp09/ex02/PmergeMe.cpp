@@ -103,25 +103,29 @@ void	merge(Container& left, Container& right, Container& sequence)
 	}
 }
 
-template<typename Container>
-void	insertion(Container& sequence)
+template<typename iter>
+iter	custom_next(iter it)
 {
-	size_t	i, j;
-	int target;
+	++it;
+	return it;
+}
 
-	for (i = 1; i < sequence.size(); i++)
-	{
-		target = sequence[i];
-		for (j = i - 1; j >= 0; j--)
-		{
-			if (sequence[j] > target)
-				sequence[j + 1] = sequence[j];
-			else
-				break ;
+template<typename Container>
+void insertion(Container& sequence) {
+	typename Container::iterator i, j;
+	typename Container::value_type target;
+
+	for (i = sequence.begin(); i != sequence.end(); ++i) {
+		target = *i;
+		j = i;
+		while (j != sequence.begin() && *(custom_next(j)) > target) {
+			*j = *(custom_next(j));
+			--j;
 		}
-		sequence[j + 1] = target;
+		*j = target;
 	}
 }
+
 
 template<typename Container>
 void	mergeInsertionSort(Container& sequence)
@@ -129,8 +133,11 @@ void	mergeInsertionSort(Container& sequence)
 	typename Container::iterator it = sequence.begin();
 	std::advance(it, sequence.size() / 2);
 
-	if (sequence.size() <= 4)
+	if (sequence.size() < 5)
+	{
 		insertion(sequence);
+		return ;
+	}
 	Container left(sequence.begin(), it);
 	Container right(it, sequence.end());
 
