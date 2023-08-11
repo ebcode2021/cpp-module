@@ -166,7 +166,7 @@ bool	BitcoinExchange::checkDateFormat(const std::string& date)
 	int	month = std::atoi(splittedDate[1].c_str());
 	int	day = std::atoi(splittedDate[2].c_str());
 
-	if ((year < 2000 || year > 2023) == true)
+	if (year > 2023 == true)
 		returnFlag = false;
 	if ((month < 1 || month > 12) == true)
 		returnFlag = false;

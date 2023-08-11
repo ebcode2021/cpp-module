@@ -35,7 +35,7 @@ void	RPN::run(const std::string& input)
 			int	num = std::atoi(token.c_str());
 			this->_stack.push(num);
 		}
-		else if (token[0] == '+' || token[0] == '-' || token[0] == '/' || token[0] == '*')
+		else if (token.size() == 1 && (token[0] == '+' || token[0] == '-' || token[0] == '/' || token[0] == '*'))
 		{
 			if (this->_stack.size() < 2)
 				printErrorWithExit();
